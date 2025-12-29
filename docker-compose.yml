@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    container_name: flask_backend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: mysql_db
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+    networks:
+      - backend-net
+
+  mysql_db:
+    image: mysql:8
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - backend-net
+
+networks:
+  backend-net:
+
+volumes:
+  mysql_data:
