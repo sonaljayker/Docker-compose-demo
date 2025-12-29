@@ -63,9 +63,8 @@ The user input form includes:
 - Sex (dropdown: Male, Female, Other)
 - Save button
 
-![Frontend Form](frontend-screenshot.png)
 
-_Note: Add a screenshot of the form here by taking a picture of the page at `/form` and saving it as `frontend-screenshot.png` in the project root._
+
 
 ### API Endpoints
 
